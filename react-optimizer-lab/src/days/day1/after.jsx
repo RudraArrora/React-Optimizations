@@ -5,23 +5,23 @@ function RenderCount({ name }) {
   c.current++;
   return (
     <span className="badge">
-      {name}: {c.current}
+      {name}:{c.current}
     </span>
   );
 }
 
-const Child = React.memo(function Child({ label }) {
-  const start = performance.now();
-  while (performance.now() - start < 5) {}
-  return (
+const Child= React.memo(function Child({label}){
+  const start= performance.now();
+  while(performance.now()-start<5){}
+  return(
     <div className="card">
-      <div className="row">
+      <div  className="row">
         <b>{label}</b>
-        <RenderCount name={label} />
+        <RenderCount name={label}></RenderCount>
       </div>
     </div>
-  );
-});
+  )
+})
 
 export default function Day1After() {
   const [count, setCount] = useState(0);
@@ -37,9 +37,9 @@ export default function Day1After() {
         <RenderCount name="Page" />
       </div>
       <hr />
-      <Child label="Card A" />
-      <Child label="Card B" />
-      <Child label="Card C" />
+      <Child label="Card A"></Child>
+      <Child label="Card B"></Child>
+      <Child label="Card C"></Child>
       <div className="small">Verify: child counters stay stable.</div>
     </div>
   );

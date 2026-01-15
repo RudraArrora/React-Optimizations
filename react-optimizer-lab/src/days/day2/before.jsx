@@ -1,11 +1,10 @@
 import React, { useMemo, useRef, useState } from "react";
-
 function RenderCount({ name }) {
   const c = useRef(0);
   c.current++;
   return (
     <span className="badge">
-      {name}: {c.current}
+      {name}:{c.current}
     </span>
   );
 }
@@ -15,10 +14,10 @@ export default function Day2Before() {
   const [toggle, setToggle] = useState(false);
 
   const list = Array.from({ length: 2000 }, (_, i) => `item-${i}`);
-  const filters = { query }; // ❌ new object every render
+  const filters = { query };
 
   const filtered = useMemo(() => {
-    console.count("FILTER RUNS (before)");
+    console.count("Filter runs before");
     return list.filter((x) => x.includes(filters.query));
   }, [filters, list]);
 
@@ -31,6 +30,7 @@ export default function Day2Before() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
+        {/* */}
         <button className="btn2" onClick={() => setToggle(!toggle)}>
           Toggle
         </button>
@@ -41,7 +41,8 @@ export default function Day2Before() {
       <div className="small">
         Console: toggling should NOT run filter, but it does.
       </div>
-      <span className="badge">{filtered.length} results</span>
+
+      <span className="badge">{filtered.length}</span>
     </div>
   );
 }

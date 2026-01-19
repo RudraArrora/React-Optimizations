@@ -7,11 +7,11 @@ export default function Day3Before() {
     () => Array.from({ length: 5000 }, (_, i) => `Row ${i}`),
     []
   );
+
   const filtered = useMemo(
     () => rows.filter((r) => r.toLowerCase().includes(q.toLowerCase())),
     [q, rows]
   );
-
   return (
     <div className="card">
       <h3>Day 3 (Before): Render 5000 rows</h3>
@@ -19,12 +19,13 @@ export default function Day3Before() {
         <input
           className="input"
           value={q}
-          onChange={(e) => setQ(e.target.value)}
           placeholder="search..."
+          onChange={(e) => setQ(e.target.value)}
         />
         <span className="badge">{filtered.length} rows</span>
       </div>
       <hr />
+
       <div style={{ height: 380, overflow: "auto" }}>
         {filtered.map((r) => (
           <div key={r} className="card" style={{ margin: "8px 0" }}>
